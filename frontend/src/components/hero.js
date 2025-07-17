@@ -85,7 +85,10 @@ export default function Hero() {
                     <div className="w-full lg:w-2/3 xl:w-1/2">
                         <h1 className="font-sans text-base font-normal tracking-tight text-white">Your Personall AI health Tracker</h1>
                         <p className="mt-6 tracking-tighter text-white">
-                            <span className="font-sans font-normal text-7xl">HealthNudge- Wellness</span><br />
+                           
+                            <span className="font-sans font-normal text-7xl">HealthNudge- Wellness</span>
+                            
+                            <br />
                             <span className="font-serif italic font-normal text-8xl">Enhanced by AI</span>
                         </p>
                         <p className="mt-12 font-sans font-normal leading-7 text-white text-2xl">Get personalized tips, diet plans, and report insights — built just for you.</p>
