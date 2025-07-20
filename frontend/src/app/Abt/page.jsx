@@ -11,10 +11,10 @@ export default function AboutUs() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between">
             <div className="flex shrink-0">
-              <a href="#" title="" className="flex">
+              <a href="/" title="" className="flex">
                 <img
-                  className="w-auto h-8"
-                  src="https://landingfoliocom.imgix.net/store/collection/clarity-blog/images/logo.svg"
+                  className="w-auto h-20"
+                  src="/images/logo.png"
                   alt="logo"
                 />
               </a>

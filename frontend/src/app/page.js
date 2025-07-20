@@ -4,13 +4,14 @@ import Hero from '../components/hero';
 import About from './about/page';
 import Features from '../components/features';
 import Booking from './../components/howItWorks';
-
+import MacbookScrollDemo from './../components/scroll';
 export default function Home() {
   return (
     <>
     <Hero/>
     {/* <Register/> */}
     {/* <VerifyEmailPage/> */}
+    <MacbookScrollDemo/>
     <About/>
     <Features/>
     <Booking/>

@@ -220,7 +220,7 @@ export default function HealthNudgeSignup() {
                 href="#"
                 className="text-blue-500 hover:underline font-semibold"
               >
-                Log in now
+                Login
               </a>
             </p>
           </div>

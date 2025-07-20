@@ -8,9 +8,9 @@ export default function Hero() {
                 <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
                     <div className="flex items-center justify-between">
                         <div className="flex flex-shrink-0">
-                            <a href="#" title="BakerStreet" className="inline-flex rounded-md focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-secondary focus:ring-primary">
-                                <img className="w-auto h-8" src="https://cdn.rareblocks.xyz/collection/bakerstreet/images/logo.svg" alt="BakerStreet" />
-                            </a>
+                            {/* <a href="#" title="BakerStreet" className="inline-flex rounded-md focus:ring-offset-secondary focus:ring-primary">
+                                <img className="w-auto h-18" src="/images/logo.png" alt="BakerStreet" />
+                            </a> */}
                         </div>
 
                         <div className="md:hidden">
@@ -22,8 +22,8 @@ export default function Hero() {
                         </div>
 
                         <div className="hidden md:flex md:items-center md:space-x-10 lg:ml-28">
-                            <a href="#" title="" className="font-sans text-base font-normal transition-all duration-200 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary focus:ring-offset-secondary"> Courses </a>
-                            <a href="login" title="" className="font-sans text-base font-normal transition-all duration-200 rounded bg-transparent text-white focus:ring-primary focus:ring-offset-secondary cursor-pointer "> Login </a>
+                            <a href="/Abt" title="" className="font-sans text-base font-normal transition-all duration-200 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary focus:ring-offset-secondary"> About </a>
+                            <a href="/login" title="" className="font-sans text-base font-normal transition-all duration-200 rounded bg-transparent text-white focus:ring-primary focus:ring-offset-secondary cursor-pointer "> Login </a>
 
                             <a
                                 href="/register"
