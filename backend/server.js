@@ -25,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 
 //import routes
 const authmiddleware = require('./middlewares/auth');
+// const  upload  = require('./middlewares/upload'); // import multer config
 const authRoutes = require('./routes/auth');
 const healthRoutes = require('./routes/health');
 const aiRoutes = require('./routes/ai');

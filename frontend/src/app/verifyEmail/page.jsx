@@ -24,7 +24,7 @@ export default function VerifyEmailPage() {
         if (response.status === 200) {
           setMessage("✅ Email verified successfully. Redirecting to login...");
           setTimeout(() => {
-            router.push("/");
+            router.push("/login");
           }, 3000);
         }
       } catch (err) {

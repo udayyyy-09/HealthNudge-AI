@@ -38,7 +38,7 @@ const register = async (req, res) => {
     await user.save();
 
     //Before generating token, send verification email
-    await sendVerificationEmail(user.email, verificationToken); //function to send verification email
+    await sendVerificationEmail(user.email, verificationToken);        //function to send verification email
 
     //Generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {

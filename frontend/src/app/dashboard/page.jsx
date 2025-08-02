@@ -337,7 +337,7 @@ const Dashboard = () => {
 
   const healthScore = calculateHealthScore();
 
-  if (login && !loading) {
+  if (!login && !loading) {
     return (
       <div className="relative min-h-screen flex items-center justify-center bg-transparent backdrop-blur-md z-50">
         <div className="text-center bg-white shadow-lg rounded-xl p-8 max-w-md border">
