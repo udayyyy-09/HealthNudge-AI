@@ -19,3 +19,5 @@ Now During login I am not sending token to json format because in previous proje
 🧠 “Built a full-stack wellness platform using GenAI (Gemini API) to generate real-time personalized health suggestions based on user habits and medical data.”
 
 cb in multer is a callback fn used to define a file will be upload or rejected
+
+Created a Pipeline of upload report from pdf/scannedpdf/images on figma

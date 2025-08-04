@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-
 const authMiddleware = (req, res, next) => {
     try{
         // const token = req.header('Authorization').replace('Bearer ', '');      Before using cookies I used this line to get token from header Authorization

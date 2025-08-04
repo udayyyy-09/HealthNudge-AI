@@ -304,27 +304,27 @@ export default function AboutUs() {
         <div className="pb-8 lg:absolute lg:inset-0 lg:pb-0">
           <div className="flex flex-col items-center justify-center overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             <div className="flex justify-start w-full gap-6 pb-8 overflow-x-auto snap-x">
-              <div className="relative snap-start scroll-ml-6 shrink-0 first:pl-6 last:pr-6">
+               <div className="relative snap-start scroll-ml-6 shrink-0 first:pl-6 last:pr-6">
                 <div className="relative flex flex-col overflow-hidden transition-all duration-200 transform bg-white border border-gray-100 shadow w-60 md:w-80 group rounded-xl hover:shadow-lg hover:-translate-y-1">
                   <a
-                    href="#"
+                    href="https://www.eatingwell.com/article/7913676/is-protein-powder-healthy/"
+                    target = "_blank"
                     title=""
                     className="flex shrink-0 aspect-w-4 aspect-h-3"
                   >
                     <img
-                      className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110"
-                      src="https://landingfoliocom.imgix.net/store/collection/clarity-blog/images/hero/4/thumbnail-1.png"
+                      className="object-cover w-full h-[250px] transition-all duration-200 transform group-hover:scale-110"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpYAgJ2V6S4feL265QSE4Ol5lPkLOG1OlMxA&s"
                       alt="thumbnail-1"
                     />
                   </a>
                   <div className="flex-1 px-4 py-5 sm:p-6">
-                    <a href="#" title="" className="">
+                    <a href="https://www.medicalnewstoday.com/articles/can-fiber-help-lose-weight-dietitian-answers-5-key-questions" title="" className="">
                       <p className="text-lg font-bold text-gray-900">
-                        How to write content about your photographs
+                        Is Protein Powder Healthy? Here's What a Dietitian Says
                       </p>
                       <p className="mt-3 text-sm font-normal leading-6 text-gray-500 line-clamp-3">
-                        Lorem ipsum dolor sit amet, consec tetur adipiscing
-                        elit. Sit quis auctor odio arcu et dolor.
+                        But is protein powder healthy, and what is it made from? Should you be using it? Keep reading to find out the answers to these questions and more.
                       </p>
                     </a>
                   </div>
@@ -332,7 +332,9 @@ export default function AboutUs() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <p className="text-sm font-medium text-gray-900">
-                          <a href="#" title="" className="">
+                          <a href="https://www.medicalnewstoday.com/articles/can-fiber-help-lose-weight-dietitian-answers-5-key-questions"
+                          target  = "_blank"
+                           title="" className="">
                             Growth
                           </a>
                         </p>
@@ -366,24 +368,24 @@ export default function AboutUs() {
               <div className="relative snap-start scroll-ml-6 shrink-0 first:pl-6 last:pr-6">
                 <div className="relative flex flex-col overflow-hidden transition-all duration-200 transform bg-white border border-gray-100 shadow w-60 md:w-80 group rounded-xl hover:shadow-lg hover:-translate-y-1">
                   <a
-                    href="#"
+                    href="https://www.medicalnewstoday.com/articles/lifestyle-changes-4-areas-diet-exercise-may-improve-brain-health-aging-pointer-trial"
+                    target = "_blank"
                     title=""
                     className="flex shrink-0 aspect-w-4 aspect-h-3"
                   >
                     <img
                       className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110"
                       src="https://landingfoliocom.imgix.net/store/collection/clarity-blog/images/hero/4/thumbnail-2.png"
-                      alt="thumbnail-2"
+                      alt="thumbnail-3"
                     />
                   </a>
                   <div className="flex-1 px-4 py-5 sm:p-6">
-                    <a href="#" title="" className="">
+                    <a href="https://www.medicalnewstoday.com/articles/can-fiber-help-lose-weight-dietitian-answers-5-key-questions" title="" className="">
                       <p className="text-lg font-bold text-gray-900">
-                        How to write content about your photographs
+                        Lifestyle changes in 4 areas may improve brain health, major US study finds
                       </p>
                       <p className="mt-3 text-sm font-normal leading-6 text-gray-500 line-clamp-3">
-                        Lorem ipsum dolor sit amet, consec tetur adipiscing
-                        elit. Sit quis auctor odio arcu et dolor.
+                       Some participants followed the program self-guided, but those receiving the program in a structured format improved more, though all participants’ cognitive scores improved.
                       </p>
                     </a>
                   </div>
@@ -391,7 +393,9 @@ export default function AboutUs() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <p className="text-sm font-medium text-gray-900">
-                          <a href="#" title="" className="">
+                          <a href="https://www.medicalnewstoday.com/articles/can-fiber-help-lose-weight-dietitian-answers-5-key-questions"
+                          target  = "_blank"
+                           title="" className="">
                             Growth
                           </a>
                         </p>
@@ -425,24 +429,24 @@ export default function AboutUs() {
               <div className="relative snap-start scroll-ml-6 shrink-0 first:pl-6 last:pr-6">
                 <div className="relative flex flex-col overflow-hidden transition-all duration-200 transform bg-white border border-gray-100 shadow w-60 md:w-80 group rounded-xl hover:shadow-lg hover:-translate-y-1">
                   <a
-                    href="#"
+                    href="http://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/"
+                    target = "_blank"
                     title=""
                     className="flex shrink-0 aspect-w-4 aspect-h-3"
                   >
                     <img
-                      className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110"
-                      src="https://landingfoliocom.imgix.net/store/collection/clarity-blog/images/hero/4/thumbnail-3.png"
+                      className="object-cover w-full h-[300px] transition-all duration-200 transform group-hover:scale-110"
+                      src="https://images.unsplash.com/photo-1634463278803-f9f71890e67d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdlaWdodHxlbnwwfHwwfHx8MA%3D%3D"
                       alt="thumbnail-3"
                     />
                   </a>
                   <div className="flex-1 px-4 py-5 sm:p-6">
-                    <a href="#" title="" className="">
+                    <a href="http://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/" title="" className="">
                       <p className="text-lg font-bold text-gray-900">
-                        How to write content about your photographs
+                        Tips to help you lose weight.
                       </p>
                       <p className="mt-3 text-sm font-normal leading-6 text-gray-500 line-clamp-3">
-                        Lorem ipsum dolor sit amet, consec tetur adipiscing
-                        elit. Sit quis auctor odio arcu et dolor.
+                        There are lots of ways you can lose weight, from making small changes to what you eat and drink to finding more support.
                       </p>
                     </a>
                   </div>
@@ -450,7 +454,9 @@ export default function AboutUs() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <p className="text-sm font-medium text-gray-900">
-                          <a href="#" title="" className="">
+                          <a href="https://www.medicalnewstoday.com/articles/can-fiber-help-lose-weight-dietitian-answers-5-key-questions"
+                          target  = "_blank"
+                           title="" className="">
                             Growth
                           </a>
                         </p>
@@ -458,7 +464,7 @@ export default function AboutUs() {
                           •
                         </span>
                         <p className="text-sm font-medium text-gray-900">
-                          7 Mins Read
+                          2 Mins Read
                         </p>
                       </div>
                       <a href="#" title="" className="" role="button">

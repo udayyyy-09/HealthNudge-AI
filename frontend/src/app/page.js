@@ -9,8 +9,6 @@ export default function Home() {
   return (
     <>
     <Hero/>
-    {/* <Register/> */}
-    {/* <VerifyEmailPage/> */}
     <MacbookScrollDemo/>
     <About/>
     <Features/>

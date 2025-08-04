@@ -59,20 +59,20 @@ class GeminiLLMService {
     
     // Check session limits
     if (this.usage.session.tokens + estimatedTokens > this.rateLimits.sessionTokenLimit) {
-      throw new Error(`❌ Session token limit reached (${this.rateLimits.sessionTokenLimit}). Tokens used: ${this.usage.session.tokens}`);
+      throw new Error(`Session token limit reached (${this.rateLimits.sessionTokenLimit}). Tokens used: ${this.usage.session.tokens}`);
     }
     
     if (this.usage.session.requests >= this.rateLimits.sessionRequestLimit) {
-      throw new Error(`❌ Session request limit reached (${this.rateLimits.sessionRequestLimit})`);
+      throw new Error(`Session request limit reached (${this.rateLimits.sessionRequestLimit})`);
     }
 
     // Check daily limits
     if (this.usage.daily.tokens + estimatedTokens > this.rateLimits.dailyTokenLimit) {
-      throw new Error(`❌ Daily token limit reached (${this.rateLimits.dailyTokenLimit})`);
+      throw new Error(`Daily token limit reached (${this.rateLimits.dailyTokenLimit})`);
     }
     
     if (this.usage.daily.requests >= this.rateLimits.dailyRequestLimit) {
-      throw new Error(`❌ Daily request limit reached (${this.rateLimits.dailyRequestLimit})`);
+      throw new Error(`Daily request limit reached (${this.rateLimits.dailyRequestLimit})`);
     }
 
     // Check per-minute limits
@@ -83,7 +83,7 @@ class GeminiLLMService {
     
     if (this.usage.lastMinute.requests >= this.rateLimits.perMinuteRequestLimit) {
       const waitTime = 60000 - (now - this.usage.lastMinute.windowStart);
-      throw new Error(`❌ Rate limit exceeded. Wait ${Math.ceil(waitTime/1000)} seconds`);
+      throw new Error(`Rate limit exceeded. Wait ${Math.ceil(waitTime/1000)} seconds`);
     }
 
     return true;
@@ -222,7 +222,7 @@ class GeminiLLMService {
       };
 
     } catch (error) {
-      console.error('❌ Medical analysis error:', error.message);
+      console.error('Medical analysis error:', error.message);
       return {
         success: false,
         error: this.simplifyError(error),
@@ -450,14 +450,14 @@ class GeminiTester {
         console.log('Response:', result.analysis.substring(0, 100) + '...');
         console.log('Tokens used:', result.usage.totalTokenCount);
       } else {
-        console.log('❌ Test failed:', result.error);
+        console.log('Test failed:', result.error);
       }
       
       this.service.printUsageLimits();
       return result;
       
     } catch (error) {
-      console.log('❌ Test error:', error.message);
+      console.log('Test error:', error.message);
       return { success: false, error: error.message };
     }
   }
