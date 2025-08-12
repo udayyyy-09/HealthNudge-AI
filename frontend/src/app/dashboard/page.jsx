@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 // Enhanced Vertical Navbar Component
+import Link from 'next/link'; 
 
 const VerticalNavbar = ({ activeSection, setActiveSection }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -53,11 +54,11 @@ const VerticalNavbar = ({ activeSection, setActiveSection }) => {
   const router = useRouter();
 
   const mainMenuItems = [
-    { id: "dashboard", label: "Dashboard", icon: Home },
-    { id: "health-entries", label: "Health Entries", icon: Activity },
-    { id: "Upload Report", label: "Upload Report", icon: CloudUpload },
-    { id: "Diet Plan", label: "Diet Plan", icon: Utensils },
-    { id: "Home", label: "Home", icon: Laptop },
+    { id: "dashboard", label: "Dashboard", icon: Home , link: "/dashboard"},
+    { id: "health-entries", label: "Health Entries", icon: Activity, link: "/form" },
+    { id: "Upload Report", label: "Upload Report", icon: CloudUpload, link: "/upload" },
+    { id: "Diet Plan", label: "Diet Plan", icon: Utensils, link: "/form" },
+    { id: "Home", label: "Home", icon: Laptop , link: "/"},
   ];
 
   const otherMenuItems = [
@@ -106,6 +107,16 @@ const VerticalNavbar = ({ activeSection, setActiveSection }) => {
               const isActive = activeSection === item.id;
 
               return (
+                    <Link
+                    key = {item.id}
+                    href = {item.link}
+                onClick={() => setActiveSection(item.id)}
+                className={`block w-full transition-all duration-200 ${
+                  isActive
+                    ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg"
+                    : "text-slate-300 hover:bg-slate-700 hover:text-white"
+                }`}
+        >     
                 <button
                   key={item.id}
                   onClick={() => setActiveSection(item.id)}
@@ -124,6 +135,7 @@ const VerticalNavbar = ({ activeSection, setActiveSection }) => {
                     <span className="font-medium">{item.label}</span>
                   )}
                 </button>
+                </Link>
               );
             })}
           </nav>
@@ -167,19 +179,7 @@ const VerticalNavbar = ({ activeSection, setActiveSection }) => {
       </div>
 
       {/* User Profile Section */}
-      {!isCollapsed && (
-        <div className="p-4 border-t border-slate-700">
-          <div className="flex items-center space-x-3 bg-slate-700 p-3 rounded-xl">
-            <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-sm font-bold text-white">U</span>
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-white">User</p>
-              <p className="text-xs text-slate-400">user@example.com</p>
-            </div>
-          </div>
-        </div>
-      )}
+     
     </div>
   );
 };
@@ -349,7 +349,7 @@ const Dashboard = () => {
               router.push("/login");
             }}
           >
-            Please click to continue.
+            Please click to login.
           </p>
         </div>
       </div>

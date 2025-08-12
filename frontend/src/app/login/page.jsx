@@ -39,6 +39,8 @@ export default function Login() {
       if (response.status == 200) {
         // setError("Successfully login");
         console.log("Logged In", response.data);
+        // localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("token", response.data.token);
         setSuccess(true);
         setTimeout(() => {
           router.push("/dashboard");
