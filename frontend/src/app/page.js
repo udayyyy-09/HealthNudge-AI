@@ -5,6 +5,8 @@ import About from './about/page';
 import Features from '../components/features';
 import Booking from './../components/howItWorks';
 import MacbookScrollDemo from './../components/scroll';
+import Footer from './../components/footer';
+
 export default function Home() {
   return (
     <>
@@ -13,6 +15,7 @@ export default function Home() {
     <About/>
     <Features/>
     <Booking/>
+    <Footer/>
     </>
   );
 }

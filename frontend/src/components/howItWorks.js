@@ -68,11 +68,10 @@ function Booking() {
                 </span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10 font-poppins">
-                Choose a Service
+                Register
               </h3>
               <p className="mt-4 text-base text-gray-600 font-inter">
-                Select from a wide range of home services — plumbing,
-                electrician, cleaning, and more.
+                Create your HealthNudge account with secure authentication.
               </p>
             </div>
 
@@ -84,15 +83,13 @@ function Booking() {
                 </span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10 font-poppins">
-                Pick Your Professional
+                Upload Report
               </h3>
               <p className="mt-4 text-base text-gray-600 font-inter">
-                Browse verified service providers, check ratings, reviews, and
-                pricing to choose the best match.
+                Upload your medical report (PDF/Image) safely for AI processing.
               </p>
             </div>
 
-            {/* Step 3 */}
             <div>
               <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
                 <span className="text-xl font-semibold text-gray-700 font-poppins">
@@ -100,11 +97,10 @@ function Booking() {
                 </span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10 font-poppins">
-                Schedule a Visit
+                Get Summary
               </h3>
               <p className="mt-4 text-base text-gray-600 font-inter">
-                Pick a convenient date and time — we’ll ensure a smooth, timely
-                service experience.
+                Instantly receive a simplified, AI-generated health summary with insights.
               </p>
             </div>
           </div>

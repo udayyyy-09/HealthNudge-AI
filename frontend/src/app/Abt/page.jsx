@@ -3,7 +3,7 @@ import react from "react";
 import { useState, useEffect } from "react";
 import Faq from "./../../components/FAQ";
 import FeaturesSection from './../../components/NewFeature';
-import MissionSection from './../../components/Mission';
+import MissionCode from './../../components/Mission';
 export default function AboutUs() {
   return (
     <div className="">
@@ -496,7 +496,7 @@ export default function AboutUs() {
         </div>
       </section>
       <FeaturesSection/>
-      <MissionSection/>
+      <MissionCode/>
       <Faq />
     </div>
   );

@@ -2,14 +2,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Promotion from '../components/promotion';
+
 export default function Hero() {
   const router = useRouter();
-
+  const [promo, setPromo] = useState(false);
+  useEffect(() => {
+    const check = localStorage.getItem("promotion", "true");
+    if (!check) {
+      const timer = setTimeout(() => {
+        setPromo(true);
+      }, 3000)
+      return () => clearTimeout(timer);
+    }
+  }, [])
 
   return (
     <div className="relative pt-48 pb-12 bg-black xl:pt-60 sm:pb-16 lg:pb-32 xl:pb-48 2xl:pb-56">
-        
+
       <header className="absolute inset-x-0 top-0 z-10 py-8 xl:py-12">
+
         <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
           <div className="flex items-center justify-between">
             <div className="flex flex-shrink-0">
@@ -60,10 +72,10 @@ export default function Hero() {
               <a
                 href="/dashboard"
                 // title=""
-                
+
                 className="font-sans text-base font-normal transition-all duration-200 rounded bg-transparent text-white focus:ring-primary focus:ring-offset-secondary cursor-pointer "
               >
-                
+
                 DashBoard
               </a>
 
@@ -96,6 +108,10 @@ export default function Hero() {
               </a>
             </div>
           </div>
+          {promo && <Promotion close={() => {
+            setPromo(false);
+            localStorage.setItem("promotion", true);
+          }} />}
         </div>
       </header>
 
@@ -148,10 +164,7 @@ export default function Hero() {
               Get personalized tips, diet plans, and report insights — built
               just for you.
             </p>
-            <p className="mt-8 font-sans text-xl font-normal text-white">
-              Starting at $9.99/month
-            </p>
-
+           
             <div className="flex items-center mt-5 space-x-3 sm:space-x-4">
               <a
                 href="#"

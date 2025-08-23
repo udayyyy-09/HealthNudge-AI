@@ -16,7 +16,7 @@ export default function Promotion({close}) {
                         <span className="text-blue-600">Don’t miss out</span> on our discounted products.
                     </h1>
                     <p className="mt-4 text-gray-500">
-                        Don't miss out on amazing discounts—shop now before they're gone!
+                        Don`t miss out on amazing discounts—shop now before they`re gone!
                     </p>
                     <button className="rounded-lg bg-blue-600 text-sm px-14 py-3 mt-4 text-white">
                         Check out the products

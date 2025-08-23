@@ -91,7 +91,7 @@ export default function About() {
 
       <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
         <video
-          src="/video/AIvideo.mp4"
+          src="/video/AIvideo-2.mp4"
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
