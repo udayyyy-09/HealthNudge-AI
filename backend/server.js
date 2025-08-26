@@ -9,7 +9,8 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
-require('dotenv').config({ path: '.env' });
+
+
 
 //connect to mongodb
 mongoose.connect(process.env.MONGO_URI).then(()=>{

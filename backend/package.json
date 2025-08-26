@@ -5,7 +5,6 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "fs-extra": "^11.3.0",
     "jsonwebtoken": "^9.0.2",
@@ -31,6 +30,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "dotenv": "^17.2.1",
     "nodemon": "^3.1.10"
   }
 }
