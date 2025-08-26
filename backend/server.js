@@ -1,16 +1,15 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const cors = require('cors');
-const cokkieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 app.use(cors({
     origin: 'http://localhost:3000',     //change link when deployed 
     credentials:true
 }));
 app.use(express.json());
-app.use(cokkieParser());
-dotenv.config();
+app.use(cookieParser());
+require('dotenv').config({ path: '.env' });
 
 //connect to mongodb
 mongoose.connect(process.env.MONGO_URI).then(()=>{
