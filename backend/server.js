@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 app.use(cors({
-    origin: 'http://localhost:3000',     //change link when deployed 
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',     //change link when deployed 
     credentials:true
 }));
 app.use(express.json());
 app.use(cookieParser());
-
+require('dotenv').config();
 //connect to mongodb
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("Connected to MongoDB");

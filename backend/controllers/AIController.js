@@ -3,7 +3,7 @@ const { askGemini } = require("../utils/gemini");
 const upload = require("../middlewares/upload");
 const pdfParse = require("pdf-parse");
 const tesseract = require("tesseract.js");
-const poppler = require("pdf-poppler");
+const { fromPath } = require("pdf2pic");
 const fs = require("fs-extra");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
@@ -291,23 +291,34 @@ async function parsePDF(buffer) {
 }
 
 async function convertPDFToImages(pdfFilePath, outputDir, options = {}) {
-  const defaultOptions = {
-    format: "png", // PNG for better quality than JPEG
-    out_dir: outputDir,
-    out_prefix: "page",
-    page: null, // poppler all pages
-    scale: 2.0, // Higher scale for better resolution (2x)
-    density: 300, // DPI - 300 is good for OCR (default is usually 150)
-    quality: 100, // Maximum quality
-    antialias: "yes", // Better text rendering
-    ...options,
-  };
-  await poppler.convert(pdfFilePath, defaultOptions);
   try {
-    const files = await fs.readdir(outputDir);
-    return files
-      .map((f) => path.join(outputDir, f))
-      .filter((f) => /\.(png|jpe?g)$/.test(f));
+    const defaultOptions = {
+      density: 300, // DPI - 300 is good for OCR
+      saveFilename: "page",
+      savePath: outputDir,
+      format: "png", // PNG for better quality
+      width: 2048, // Max width for good OCR
+      height: 2048, // Max height for good OCR
+      ...options,
+    };
+
+    const convert = fromPath(pdfFilePath, defaultOptions);
+    
+    // Get PDF info to determine number of pages
+    const pdfInfo = await convert.bulk(-1, { responseType: "array" });
+    const imageFiles = [];
+    
+    // Convert each page
+    for (let i = 1; i <= pdfInfo.length; i++) {
+      const result = await convert(i, { responseType: "array" });
+      if (result && result.data) {
+        const imagePath = path.join(outputDir, `page_${i}.png`);
+        await fs.writeFile(imagePath, Buffer.from(result.data));
+        imageFiles.push(imagePath);
+      }
+    }
+    
+    return imageFiles;
   } catch (error) {
     console.error("PDF conversion error:", error);
     throw error;
@@ -348,7 +359,7 @@ const analyzeReport = async (req, res) => {
       } else {
         processingMethod = "PDF to Image + OCR";
         console.log(
-          "PDF has no extractable text or contains encoding issues, popplering to images for OCR..."
+          "PDF has no extractable text or contains encoding issues, converting to images for OCR..."
         );
         const tempDir = path.join(__dirname, "../tmp", uuidv4());
         await fs.ensureDir(tempDir);
@@ -366,7 +377,7 @@ const analyzeReport = async (req, res) => {
           });
 
           console.log(
-            `popplered PDF to ${imageFiles.length} image(s) with enhanced quality`
+            `Converted PDF to ${imageFiles.length} image(s) with enhanced quality`
           );
 
           const pageTexts = [];
