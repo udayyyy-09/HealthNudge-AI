@@ -85,13 +85,14 @@ const login = async (req, res) => {
       expiresIn: "24h",
     });
 
-    //send token in HTTP Only COOKIE for better security
+    // Send token in HTTP-only cookie for better security
+    // In production, set SameSite=None to allow cross-site cookies from the frontend domain
     res
       .cookie("token", token, {
-        httpOnly: true,             // Prevents JavaScript access to the cookie
-        secure: process.env.NODE_ENV === "production", // Use secure cookies in production otherwise false for localhost
-        sameSite: "Strict", // Helps prevent CSRF attacks
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
       .json({

@@ -3,9 +3,10 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+app.set('trust proxy', 1);
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',     //change link when deployed 
-    credentials:true
+    origin: [process.env.FRONTEND_URL || 'http://localhost:3000'],
+    credentials: true,
 }));
 app.use(express.json());
 app.use(cookieParser());
