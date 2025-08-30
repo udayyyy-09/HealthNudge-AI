@@ -9,7 +9,7 @@ const sendVerificationEmail = async (email, token) => {
     }
   });
 
-  const url = `http://localhost:3000/verifyEmail?token=${token}`;     //url to verify email
+  const url = `https://health-ai-plum.vercel.app/verifyEmail?token=${token}`;     //url to verify email
 
   const html = `
     <div style="font-family: Arial, sans-serif; background: #f4f4f4; padding: 30px;">
