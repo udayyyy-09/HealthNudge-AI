@@ -8,7 +8,8 @@ const fs = require("fs-extra");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const { geminiService } = require("../service/GeminiService"); // Import your OpenAI service
-
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+ 
 const getDietPlan = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -610,9 +611,33 @@ const analyzeReportWithMedicalMethod = async (req, res) => {
   res.json(response);
 };
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY_BOT);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+const chat = async (req, res) => {
+  const { question } = req.body;
+
+  if (!question || question.trim() === '') {
+    return res.status(400).json({ error: 'Question is required' });
+  }
+
+  try {
+    const result = await model.generateContent({
+      contents: [{ role: "user", parts: [{ text: question }] }],
+    });
+
+    const answer = result.response.text();
+    res.json({ answer });
+
+  } catch (err) {
+    console.error('Gemini API Error:', err);
+    res.status(500).json({ error: 'Failed to fetch response from Gemini API' });
+  }
+};
 module.exports = {
   analyzeReport,
   cleanOCRText,
   calculateTextQuality,
   getDietPlan,
+  chat
 };

@@ -9,7 +9,7 @@ import {
   ChevronRight,
   Check,
 } from "lucide-react";
-
+import Link from "next/link";
 export default function HealthNudgeSignup() {
   const [formData, setFormData] = useState({
     name: "",
@@ -216,12 +216,12 @@ export default function HealthNudgeSignup() {
           <div className="mt-4 text-center">
             <p className="text-gray-600">
               Already have an account?{" "}
-              <a
-                href="#"
+              <Link
+                href="/login"
                 className="text-blue-500 hover:underline font-semibold"
               >
                 Login
-              </a>
+              </Link>
             </p>
           </div>
         </form>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Faq from "./../../components/FAQ";
 import FeaturesSection from './../../components/NewFeature';
 import MissionCode from './../../components/Mission';
+import Link from 'next/link';
 export default function AboutUs() {
   return (
     <div className="">
@@ -56,27 +57,27 @@ export default function AboutUs() {
               </button>
             </div>
             <div className="hidden md:items-center md:justify-start md:ml-16 md:mr-auto md:space-x-10 md:flex">
-              <a
-                href="#"
+              <Link
+                href="/"
                 title=""
                 className="text-base font-medium text-gray-900 transition-all duration-200 hover:text-indigo-600"
               >
-                Features
-              </a>{" "}
-              <a
-                href="#"
+                Home
+              </Link>{" "}
+              <Link
+                href="/login"
                 title=""
                 className="text-base font-medium text-gray-900 transition-all duration-200 hover:text-indigo-600"
               >
-                Pricing
-              </a>
-              <a
-                href="#"
+                Login
+              </Link>
+              <Link
+                href="/upload"
                 title=""
                 className="text-base font-medium text-gray-900 transition-all duration-200 hover:text-indigo-600"
               >
-                Support
-              </a>
+                Upload
+              </Link>
             </div>
             <div className="hidden md:block">
               <a

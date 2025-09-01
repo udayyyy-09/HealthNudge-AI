@@ -10,6 +10,7 @@ import {
   Loader,
   X,
   File,
+  Sparkles,
 } from "lucide-react";
 import UploadHero from "./../../components/uploadhero";
 import { IconSquareRoundedX } from "@tabler/icons-react";
@@ -50,6 +51,27 @@ export default function ReportUpload() {
       window.speechSynthesis.speak(speech);
     } else {
       alert("Sorry, your browser does not support text-to-speech.");
+    }
+  };
+
+  // Stop speech function
+  const stopSpeech = () => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  // Pause speech function
+  const pauseSpeech = () => {
+    if ("speechSynthesis" in window && !window.speechSynthesis.paused) {
+      window.speechSynthesis.pause();
+    }
+  };
+
+  // Resume speech function
+  const resumeSpeech = () => {
+    if ("speechSynthesis" in window && window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
     }
   };
 
@@ -166,27 +188,29 @@ export default function ReportUpload() {
       <UploadHero />
       <div className="max-w-4xl mx-auto p-6 mt-10">
         {/* Upload Section */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-          <div className="p-8">
+        <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-3xl">
+          <div className="p-10">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText className="w-8 h-8 text-white" />
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse">
+                <FileText className="w-10 h-10 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight flex items-center justify-center gap-2">
+                <Sparkles className="w-7 h-7 text-purple-500 animate-bounce" />
                 Upload Medical Report
               </h2>
-              <p className="text-gray-600">
-                Upload your medical report for AI-powered analysis and insights
+              <p className="text-gray-600 text-lg">
+                Get instant AI-powered analysis and insights from your medical
+                report.
               </p>
             </div>
 
             {/* File Upload */}
             <div
-              className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 ${
+              className={`relative border-2 border-dashed rounded-2xl p-10 text-center transition-all duration-300 ${
                 dragActive
-                  ? "border-blue-500 bg-blue-50 scale-105"
+                  ? "border-blue-500 bg-blue-100 scale-105"
                   : file
-                  ? "border-green-500 bg-green-50"
+                  ? "border-green-500 bg-green-100"
                   : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
               }`}
               onDragEnter={handleDrag}
@@ -204,10 +228,10 @@ export default function ReportUpload() {
               <div className="space-y-4">
                 {file ? (
                   <div className="flex items-center justify-center space-x-4">
-                    <div className="flex items-center space-x-3 bg-white rounded-lg p-4 shadow-sm border">
+                    <div className="flex items-center space-x-3 bg-white rounded-lg p-4 shadow-md border border-green-200">
                       <File className="w-8 h-8 text-blue-500" />
                       <div className="text-left">
-                        <p className="font-medium text-gray-900 truncate max-w-xs">
+                        <p className="font-semibold text-gray-900 truncate max-w-xs">
                           {file.name}
                         </p>
                         <p className="text-sm text-gray-500">
@@ -218,6 +242,7 @@ export default function ReportUpload() {
                         onClick={removeFile}
                         className="text-gray-400 hover:text-red-500 transition-colors"
                         disabled={loading}
+                        aria-label="Remove file"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -226,19 +251,19 @@ export default function ReportUpload() {
                 ) : (
                   <>
                     <Upload
-                      className={`w-12 h-12 mx-auto transition-colors ${
+                      className={`w-14 h-14 mx-auto transition-colors ${
                         dragActive ? "text-blue-500" : "text-gray-400"
                       }`}
                     />
                     <div>
-                      <p className="text-lg font-medium text-gray-700">
+                      <p className="text-xl font-semibold text-gray-700">
                         {dragActive
                           ? "Drop your file here"
                           : "Drag & drop your medical report"}
                       </p>
                       <p className="text-gray-500 mt-1">
                         or{" "}
-                        <span className="text-blue-600 font-medium">
+                        <span className="text-blue-600 font-bold underline cursor-pointer">
                           click to browse
                         </span>
                       </p>
@@ -250,9 +275,9 @@ export default function ReportUpload() {
 
             {/* Error */}
             {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg mt-4">
-                <AlertCircle className="w-5 h-5 text-red-500 inline-block mr-2" />
-                <span className="text-red-700">{error}</span>
+              <div className="p-4 bg-red-100 border border-red-300 rounded-lg mt-4 flex items-center gap-2">
+                <AlertCircle className="w-5 h-5 text-red-500" />
+                <span className="text-red-700 font-medium">{error}</span>
               </div>
             )}
 
@@ -274,7 +299,7 @@ export default function ReportUpload() {
                   setLoader(true);
                 }}
                 disabled={!file || loading}
-                className="flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50"
+                className="flex items-center justify-center space-x-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50"
               >
                 {loading ? (
                   <>
@@ -292,6 +317,7 @@ export default function ReportUpload() {
                 <button
                   className="fixed top-4 right-4 text-black z-[120]"
                   onClick={() => setLoader(false)}
+                  aria-label="Close loader"
                 >
                   <IconSquareRoundedX className="h-10 w-10" />
                 </button>
@@ -300,7 +326,7 @@ export default function ReportUpload() {
                 <button
                   onClick={resetForm}
                   disabled={loading}
-                  className="px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200"
+                  className="px-8 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 shadow"
                 >
                   Reset Upload
                 </button>
@@ -311,34 +337,46 @@ export default function ReportUpload() {
 
         {/* Analysis Results + TTS */}
         {analysisResult && (
-          <div className="mt-8 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-white flex items-center">
-                <Brain className="w-6 h-6 mr-3" />
+          <div className="mt-10 bg-gradient-to-br from-purple-50 via-blue-50 to-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+            <div className="bg-white p-8 flex flex-col md:flex-row justify-between items-center">
+              <h3 className="text-2xl font-extrabold text-black flex items-center gap-3">
+                <Brain className="B-7 h-7 mr-2" />
                 Analysis Results
               </h3>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mt-4 md:mt-0">
                 <select
                   value={selectedLang}
                   onChange={(e) => setSelectedLang(e.target.value)}
-                  className="rounded-lg px-2 py-1 text-sm"
+                  className="rounded-lg px-2 py-1 text-sm font-semibold bg-black"
                 >
-                  <option value="en-US">English</option>
+                  <option value="en-US" className="text-black">English</option>
                   <option value="hi-IN">Hindi</option>
                 </select>
                 <button
                   onClick={() =>
                     speakText(analysisResult.llmAnalysis?.summary || "")
                   }
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-3 py-1 rounded-lg text-sm"
+                  className="bg-black hover:bg-gray-900 text-white px-4 py-1 rounded-lg text-sm font-bold shadow"
                 >
                   🔊 Speak
+                </button>
+                <button
+                  onClick={pauseSpeech}
+                  className="bg-black hover:bg-gray-900 text-white px-4 py-1 rounded-lg text-sm font-bold shadow"
+                >
+                  ⏸️ Pause
+                </button>
+                <button
+                  onClick={resumeSpeech}
+                  className="bg-black hover:bg-gray-900 text-white px-4 py-1 rounded-lg text-sm font-bold shadow"
+                >
+                  ▶️ Resume
                 </button>
               </div>
             </div>
 
-            <div className="p-8">
-              <pre className="text-sm text-gray-700 whitespace-pre-wrap font-mono leading-relaxed">
+            <div className="p-10">
+              <pre className="text-lg text-gray-800 whitespace-pre-wrap font-mono leading-relaxed bg-white rounded-xl p-6 shadow-inner border border-gray-100">
                 {analysisResult.llmAnalysis?.summary || "No summary available."}
               </pre>
             </div>

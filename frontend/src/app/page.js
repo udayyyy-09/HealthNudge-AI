@@ -6,11 +6,12 @@ import Features from '../components/features';
 import Booking from './../components/howItWorks';
 import MacbookScrollDemo from './../components/scroll';
 import Footer from './../components/footer';
-
+import Chatbot from './../components/chatbot';
 export default function Home() {
   return (
     <>
     <Hero/>
+    <Chatbot/>
     <MacbookScrollDemo/>
     <About/>
     <Features/>
