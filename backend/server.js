@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 });
 
 //import routes
-const authmiddleware = require('./middlewares/auth');
+const authMiddleware = require('./middlewares/auth');
 // const  upload  = require('./middlewares/upload'); // import multer config
 const authRoutes = require('./routes/auth');
 const healthRoutes = require('./routes/health');
@@ -31,8 +31,8 @@ const aiRoutes = require('./routes/ai');
 
 //Route middleware
 app.use('/api', authRoutes);
-app.use('/api/health', authmiddleware, healthRoutes);       //authmiddleware is used to protect the health routes
-app.use('/api/ai', authmiddleware, aiRoutes);               //protect the AI routes
+app.use('/api/health', authMiddleware, healthRoutes);       //authMiddleware is used to protect the health routes
+app.use('/api/ai', aiRoutes);                               // AI routes (authentication handled per-route)
 
 //tesing 
 app.get('/test', (req,res)=>{

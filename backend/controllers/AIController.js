@@ -550,66 +550,8 @@ Report: ${cleanedText}`;
 };
 
 // Alternative: Use the dedicated medical analysis method
-const analyzeReportWithMedicalMethod = async (req, res) => {
-  // ... [same OCR processing code as above] ...
-
-  // ALTERNATIVE LLM ANALYSIS using analyzeMedicalReport method
-  if (cleanedText.length > 0) {
-    try {
-      console.log("🤖 Starting medical report analysis...");
-
-      const analysisOptions = {
-        analysisType: "summary", // Use summary for token efficiency
-        includeRecommendations: true,
-        focusAreas: ["abnormal values", "risk factors"],
-        patientContext: "Lipid profile test report analysis",
-      };
-
-      const analysis = await geminiService.analyzeMedicalReport(
-        cleanedText,
-        analysisOptions
-      );
-
-      if (analysis.success) {
-        response.llmAnalysis = {
-          summary: analysis.analysis || "No analysis returned",
-          modelUsed: analysis.model || geminiService.model,
-          tokensUsed:
-            analysis.usage?.totalTokens || analysis.usage?.totalTokenCount || 0,
-          promptTokens: analysis.usage?.promptTokens || 0,
-          completionTokens: analysis.usage?.completionTokens || 0,
-          success: true,
-          quotaRemaining: analysis.quotaRemaining,
-          processingTime: analysis.processingTime,
-        };
-
-        console.log(
-          `Medical analysis completed. Tokens: ${response.llmAnalysis.tokensUsed}`
-        );
-      } else {
-        response.llmAnalysis = {
-          summary: "Medical analysis failed",
-          modelUsed: geminiService.model,
-          tokensUsed: 0,
-          success: false,
-          error: analysis.error,
-          quotaRemaining: analysis.quotaRemaining,
-        };
-      }
-    } catch (llmError) {
-      console.error("❌ Medical analysis error:", llmError.message);
-      response.llmAnalysis = {
-        summary: "Analysis failed due to error",
-        modelUsed: geminiService.model,
-        tokensUsed: 0,
-        success: false,
-        error: llmError.message,
-      };
-    }
-  }
-
-  res.json(response);
-};
+// Note: This function is incomplete and needs proper implementation
+// const analyzeReportWithMedicalMethod = async (req, res) => { ... };
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY_BOT);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -634,6 +576,7 @@ const chat = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch response from Gemini API' });
   }
 };
+
 module.exports = {
   analyzeReport,
   cleanOCRText,
