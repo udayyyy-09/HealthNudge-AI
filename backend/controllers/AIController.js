@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Report = require("../models/Report");
 const { askGemini } = require("../utils/gemini");
 const upload = require("../middlewares/upload");
 const pdfParse = require("pdf-parse");
@@ -503,6 +504,20 @@ Report: ${cleanedText}`;
               analysis.usage?.totalTokenCount || 0
             }`
           );
+
+          // Save report summary to database
+          try {
+            const newReport = new Report({
+              user: req.user.userId,
+              fileName: file.originalname,
+              summary: analysis.analysis || "No analysis text returned"
+            });
+            await newReport.save();
+            console.log("Report summary saved to database");
+          } catch (dbError) {
+            console.error("Error saving report to database:", dbError);
+            // Don't fail the request if DB save fails
+          }
         } else {
           console.log("LLM Analysis failed:", analysis.error);
           response.llmAnalysis = {
@@ -577,10 +592,35 @@ const chat = async (req, res) => {
   }
 };
 
+// Get user's report history
+const getReportHistory = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    
+    const reports = await Report.find({ user: userId })
+      .sort({ createdAt: -1 }) // Most recent first
+      .select('fileName summary createdAt')
+      .limit(50); // Limit to last 50 reports
+    
+    res.json({
+      success: true,
+      reports: reports,
+      count: reports.length
+    });
+  } catch (err) {
+    console.error('Error fetching report history:', err);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch report history'
+    });
+  }
+};
+
 module.exports = {
   analyzeReport,
   cleanOCRText,
   calculateTextQuality,
   getDietPlan,
-  chat
+  chat,
+  getReportHistory
 };
