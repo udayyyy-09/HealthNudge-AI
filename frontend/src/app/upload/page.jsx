@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Upload,
   FileText,
@@ -11,6 +12,7 @@ import {
   X,
   File,
   Sparkles,
+  History,
 } from "lucide-react";
 import UploadHero from "./../../components/uploadhero";
 import { IconSquareRoundedX } from "@tabler/icons-react";
@@ -26,6 +28,7 @@ const loadingStates = [
 ];
 
 export default function ReportUpload() {
+  const router = useRouter();
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -313,6 +316,15 @@ export default function ReportUpload() {
                   </>
                 )}
               </button>
+              
+              <button
+                onClick={() => router.push('/reports')}
+                className="flex items-center justify-center space-x-2 px-8 py-3 bg-gradient-to-r from-green-600 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+              >
+                <History className="w-5 h-5" />
+                <span>See Medical Report History</span>
+              </button>
+              
               {loader && (
                 <button
                   className="fixed top-4 right-4 text-black z-[120]"

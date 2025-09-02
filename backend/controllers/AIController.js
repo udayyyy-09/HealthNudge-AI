@@ -595,19 +595,25 @@ const chat = async (req, res) => {
 // Get user's report history
 const getReportHistory = async (req, res) => {
   try {
-    const userId = await User.findById(req.user.userId);
+    const userId = req.user.userId;
     if (!userId) {
-      console.log("User not found");
-      return res.status(404).json({ message: "User not found" });
+      return res.status(401).json({ success: false, message: 'Authentication required' });
     }
+
+    // Ensure user exists (optional extra validation)
+    const userExists = await User.exists({ _id: userId });
+    if (!userExists) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
     const reports = await Report.find({ user: userId })
-      .sort({ createdAt: -1 }) // Most recent first
+      .sort({ createdAt: -1 })
       .select('fileName summary createdAt')
-      .limit(50); // Limit to last 50 reports
+      .limit(50);
     
     res.json({
       success: true,
-      reports: reports,
+      reports,
       count: reports.length
     });
   } catch (err) {
