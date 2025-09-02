@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export default function Chatbot() {
@@ -6,13 +6,8 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // Text-to-Speech for bot reply
-  const speakText = (text) => {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "en-US";
-    window.speechSynthesis.speak(speech);
-  };
+  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   // Send message to backend AI
   const sendMessage = async () => {
@@ -30,7 +25,6 @@ export default function Chatbot() {
       );
       const botMessage = { sender: "bot", text: res.data.answer };
       setMessages((prev) => [...prev, botMessage]);
-      speakText(res.data.answer); // AI response voice
     } catch (err) {
       const errorMsg = { sender: "bot", text: "Sorry, I couldn't connect to the AI." };
       setMessages((prev) => [...prev, errorMsg]);
@@ -39,13 +33,37 @@ export default function Chatbot() {
     }
   };
 
-  // Auto-scroll to bottom when new messages are added
+  // Auto-scroll to bottom when new messages are added or when loading state changes
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
-    const chatContainer = document.getElementById("chat-container");
-    if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+    scrollToBottom();
+  }, [messages, loading]);
+
+  // Handle scroll position when user manually scrolls
+  const handleScroll = () => {
+    const container = chatContainerRef.current;
+    if (container) {
+      const isAtBottom = container.scrollHeight - container.scrollTop === container.clientHeight;
+      
+      // If user manually scrolls away from bottom, don't auto-scroll
+      if (!isAtBottom) {
+        container.dataset.autoScroll = "false";
+      } else {
+        container.dataset.autoScroll = "true";
+      }
     }
-  }, [messages]);
+  };
+
+  // Reset auto-scroll when chat is opened
+  useEffect(() => {
+    if (isOpen && chatContainerRef.current) {
+      chatContainerRef.current.dataset.autoScroll = "true";
+      scrollToBottom();
+    }
+  }, [isOpen]);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
@@ -101,8 +119,10 @@ export default function Chatbot() {
 
           {/* Chat messages */}
           <div
+            ref={chatContainerRef}
             id="chat-container"
             className="flex-1 overflow-y-auto p-3 bg-gray-50"
+            onScroll={handleScroll}
           >
             {messages.length === 0 ? (
               <div className="text-center text-gray-500 mt-10">
@@ -136,6 +156,7 @@ export default function Chatbot() {
                 </div>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Input area */}
