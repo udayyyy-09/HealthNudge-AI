@@ -5,7 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 // app.set('trust proxy', 1);
 app.use(cors({
-    origin: "https://healthnudge-ai.onrender.com",
+    origin: "https://health-ai-plum.vercel.app",
     credentials: true,
 }));
 app.use(express.json());
