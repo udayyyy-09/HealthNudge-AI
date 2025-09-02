@@ -595,8 +595,11 @@ const chat = async (req, res) => {
 // Get user's report history
 const getReportHistory = async (req, res) => {
   try {
-    const userId = req.user.userId;
-    
+    const userId = await User.findById(req.user.userId);
+    if (!userId) {
+      console.log("User not found");
+      return res.status(404).json({ message: "User not found" });
+    }
     const reports = await Report.find({ user: userId })
       .sort({ createdAt: -1 }) // Most recent first
       .select('fileName summary createdAt')
