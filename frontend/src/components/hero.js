@@ -12,6 +12,7 @@ export default function Hero() {
     if (!check) {
       const timer = setTimeout(() => {
         setPromo(true);
+        localStorage.setItem("promotion", "true");
       }, 3000)
       return () => clearTimeout(timer);
     }
@@ -23,6 +24,7 @@ return (
     <header className="absolute inset-x-0 top-0 z-10 py-6 sm:py-8 xl:py-12">
       <div className="px-4 mx-auto sm:px-6 lg:px-12 max-w-7xl">
         <div className="flex items-center justify-between">
+
           {/* Logo */}
           <div className="flex flex-shrink-0">{/* logo goes here */}</div>
 
@@ -57,6 +59,8 @@ return (
             </a>
           </div>
         </div>
+        {promo &&  <Promotion onClose ={()=> setPromo(false)}></Promotion>}
+
       </div>
     </header>
 
@@ -97,10 +101,11 @@ return (
               Enhanced by AI
             </span>
           </p>
-
           <p className="mt-6 sm:mt-10 text-lg sm:text-xl md:text-2xl text-white">
             Get personalized tips, diet plans, and report insights — built just for you.
           </p>
+
+          
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center mt-6 sm:mt-8 space-y-3 sm:space-y-0 sm:space-x-4">

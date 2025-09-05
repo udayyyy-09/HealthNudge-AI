@@ -27,6 +27,7 @@ export default function Chatbot() {
       const botMessage = { sender: "bot", text: res.data.answer };
       setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
+      console.error("Chatbot error:", err);
       const errorMsg = { sender: "bot", text: "Sorry, I couldn't connect to the AI." };
       setMessages((prev) => [...prev, errorMsg]);
     } finally {

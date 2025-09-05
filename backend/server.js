@@ -32,7 +32,7 @@ const aiRoutes = require('./routes/ai');
 //Route middleware
 app.use('/api', authRoutes);
 app.use('/api/health', authMiddleware, healthRoutes);       //authMiddleware is used to protect the health routes
-app.use('/api/ai', authMiddleware, aiRoutes);                               // AI routes (authentication handled per-route)
+app.use('/api/ai', aiRoutes);                               // AI routes (authentication handled per-route)
 
 //tesing 
 app.get('/test', (req,res)=>{

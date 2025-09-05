@@ -17,6 +17,7 @@ import {
 import UploadHero from "./../../components/uploadhero";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 import { MultiStepLoader } from "./../../components/ui/multi-step-loader";
+import Chatbot from './../../components/chatbot';
 
 const loadingStates = [
   { text: "Got your PDF/image" },
@@ -394,6 +395,7 @@ export default function ReportUpload() {
             </div>
           </div>
         )}
+        <Chatbot/>
       </div>
     </>
   );
