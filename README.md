@@ -1,12 +1,12 @@
-# HealthNudge 🩺💡
+# HealthNudge: AI-Powered & Medical Report Analysis💡
 
 ##### An AI-powered health management platform with OCR-based medical report parsing, personalized diet plans, and accessibility-focused Text-to-Speech support.
 
 ## 📌 Overview
 
-HealthNudge is a **full-stack** platform designed to help users manage their health using AI-driven tools.
-It allows secure upload of medical reports (PDF/image) and uses a hybrid parsing approach (OCR + text extraction) to generate summaries.
-Users receive personalized veg/non-veg diet plans, can track progress on a dynamic dashboard, and benefit from an accessibility-first Text-to-Speech feature that reads reports aloud.
+**HealthNudge** is a **full-stack** platform designed to help users manage their health using AI-driven tools.
+It allows secure upload of medical reports **(PDF/image)** and uses a hybrid parsing approach **(OCR + text extraction)** to generate summaries.
+Users receive personalized **veg/non-veg diet plans**, can track progress on a **dynamic dashboard**, and benefit from an accessibility-first **Text-to-Speech** feature that reads reports aloud.
 
 ## ✨ Features
 
@@ -25,6 +25,11 @@ Users receive personalized veg/non-veg diet plans, can track progress on a dynam
 - Text-to-Speech (TTS) for accessibility – reads reports & summaries aloud for users
 
 - RESTful API Architecture with secure backend handling
+
+# Look at the flow chart of "How Uploading Works" 
+
+<img width="788" height="1000" alt="image" src="https://github.com/user-attachments/assets/f9023629-931f-4cbb-94db-520e473b1fac" />
+
 
 ## 🛠️ Tech Stack
 
