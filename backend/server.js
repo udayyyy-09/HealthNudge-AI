@@ -34,6 +34,51 @@ app.use('/api', authRoutes);
 app.use('/api/health', authMiddleware, healthRoutes);       //authMiddleware is used to protect the health routes
 app.use('/api/ai', aiRoutes);                               // AI routes (authentication handled per-route)
 
+// Diagnostic route to check if SMTP ports are blocked in production
+app.get('/api/check-ports', async (req, res) => {
+    const net = require('net');
+    const ports = [25, 465, 587];
+    const results = {};
+
+    const checkPort = (port) => {
+        return new Promise((resolve) => {
+            const socket = new net.Socket();
+            socket.setTimeout(5000); // 5s timeout
+
+            socket.on('connect', () => {
+                results[port] = "✅ SUCCESS (Port is open)";
+                socket.destroy();
+                resolve();
+            });
+
+            socket.on('timeout', () => {
+                results[port] = "❌ BLOCKED (Timeout)";
+                socket.destroy();
+                resolve();
+            });
+
+            socket.on('error', (err) => {
+                results[port] = `❌ BLOCKED (${err.message})`;
+                socket.destroy();
+                resolve();
+            });
+
+            socket.connect(port, 'smtp.gmail.com');
+        });
+    };
+
+    try {
+        await Promise.all(ports.map(p => checkPort(p)));
+        res.json({
+            message: "Port Connectivity Diagnostic",
+            target: "smtp.gmail.com",
+            results
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 //tesing 
 app.get('/test', (req,res)=>{
     res.json({message: "Server is running fine"});

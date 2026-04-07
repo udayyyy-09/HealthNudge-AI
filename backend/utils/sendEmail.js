@@ -3,15 +3,18 @@ const nodemailer = require('nodemailer');
 const sendVerificationEmail = async (email, token) => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // Use SSL/TLS
+    port: 587,
+    secure: false, // Use STARTTLS instead of SSL
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
     },
-    connectionTimeout: 10000, // 10 seconds
+    connectionTimeout: 10000, 
     greetingTimeout: 10000,
     socketTimeout: 15000,
+    tls: {
+      rejectUnauthorized: false // Helps avoid handshake issues in some cloud environments
+    }
   });
 
   const url = `https://health-ai-plum.vercel.app/verifyEmail?token=${token}`;     //url to verify email
