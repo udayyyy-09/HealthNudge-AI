@@ -569,7 +569,7 @@ Report: ${cleanedText}`;
 // const analyzeReportWithMedicalMethod = async (req, res) => { ... };
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY_BOT);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 const chat = async (req, res) => {
   const { question } = req.body;

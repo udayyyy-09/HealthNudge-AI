@@ -4,7 +4,7 @@ class GeminiLLMService {
   constructor() {
     this.apiKey = process.env.GEMINILLM_API_KEY;
     this.baseURL = 'https://generativelanguage.googleapis.com/v1beta/models';
-    this.model = 'gemini-1.5-flash'; // Free tier model
+    this.model = 'gemini-2.5-flash'; // Free tier model
     this.maxTokens = 2048; // Reduced for testing
     this.timeout = 30000; 
 

@@ -11,7 +11,7 @@ const sendVerificationEmail = require("../utils/sendEmail");
 const register = async (req, res) => {
   try {
     const verificationToken = crypto.randomBytes(32).toString("hex");
-    const { name, email, password, age , goal, diet} = req.body;
+    const { name, email, password, age , goal, dietType} = req.body;
 
     //get user by email
     const userExist = await User.findOne({ email });
@@ -33,7 +33,7 @@ const register = async (req, res) => {
       age,
       verificationToken,
       goal,
-      dietType: diet,
+      diet: dietType,
     });
     await user.save();
 
@@ -50,8 +50,23 @@ const register = async (req, res) => {
       message: "User registered successfull. Please verify your email to login",
     });
   } catch (err) {
-    console.log("Error in user registration", err);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Error in user registration:", err);
+    
+    // Check if it's a Mongoose validation error
+    if (err.name === 'ValidationError') {
+      const messages = Object.values(err.errors).map(val => val.message);
+      return res.status(400).json({ message: "Validation failed", errors: messages });
+    }
+    
+    // Check if it's a network/SMTP error from sending email
+    if (err.code === 'EENVELOPE' || err.code === 'EAUTH' || err.command === 'CONN') {
+      return res.status(500).json({ 
+        message: "Failed to send verification email. Please check your email configuration.", 
+        error: err.message 
+      });
+    }
+
+    res.status(500).json({ message: "Internal server error", error: err.message });
   }
 };
 

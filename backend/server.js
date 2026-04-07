@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -5,12 +6,11 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 // app.set('trust proxy', 1);
 app.use(cors({
-    origin: "https://health-ai-plum.vercel.app",
+    origin: ["https://health-ai-plum.vercel.app", "http://localhost:3000"],
     credentials: true,
 }));
 app.use(express.json());
 app.use(cookieParser());
-require('dotenv').config();
 //connect to mongodb
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("Connected to MongoDB");
